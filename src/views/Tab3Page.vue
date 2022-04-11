@@ -1,7 +1,10 @@
 <template>
   <ion-page>
     <ion-header>
-      <ion-toolbar>
+      <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+          <ion-menu-button ></ion-menu-button>
+        </ion-buttons>         
         <ion-title>Tab 3</ion-title>
       </ion-toolbar>
     </ion-header>
