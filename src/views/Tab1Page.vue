@@ -15,12 +15,45 @@
         </ion-toolbar>
       </ion-header>
     
-      <ExploreContainer name="Tab 1 page" />
+
 
       <ion-button expand="block" shape="round" fill="outline">
         Right Icon x
         <ion-icon slot="end" :icon="star"></ion-icon>
-      </ion-button>     
+      </ion-button>   
+
+
+      <ion-item detail="true" href="https://www.ionicframework.com">
+        <ion-label>
+          Anchor Item with no Detail Arrow
+        </ion-label>
+      </ion-item>   
+
+  <ion-item>
+    <ion-button slot="start">
+      Start
+    </ion-button>
+    <ion-label>Button Start/End</ion-label>
+    <ion-button slot="end">
+      End
+    </ion-button>
+  </ion-item>     
+
+<!--
+    <ion-item lines="none" detail color="primary" router-link="/tabs/tab2">
+      <ion-label>
+        No Lines Item
+      </ion-label>
+    </ion-item>  
+-->    
+
+  <ion-item button lines="none" detail color="primary" href="/tabs/tab2">
+    <ion-label>
+      Button Item with Detail Arrow
+    </ion-label>
+  </ion-item>     
+
+  <router-link to="/tabs/tab2">Tab1</router-link>     
         
     </ion-content>
   </ion-page>
@@ -29,13 +62,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-import ExploreContainer from '@/components/ExploreContainer.vue';
-  
+
 import { star } from 'ionicons/icons';
 
 export default  defineComponent({
   name: 'Tab1Page',
-  components: { ExploreContainer, IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
   setup() {
     return {
       star
@@ -43,3 +75,10 @@ export default  defineComponent({
   }   
 });
 </script>
+<style>
+
+.ion-button-left {
+    text-align:left;
+    width:100%;
+}
+</style>
