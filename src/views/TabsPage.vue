@@ -12,6 +12,11 @@
           <ion-icon :icon="ellipse" />
           <ion-label>Tab 2</ion-label>
         </ion-tab-button>
+
+        <ion-tab-button tab="tab2" href="/tabs/tab2">
+          <ion-icon size="large" :icon="home" />
+          <ion-label>Home</ion-label>
+        </ion-tab-button>        
         
         <ion-tab-button tab="tab3" href="/tabs/tab3">
           <ion-icon :icon="square" />
@@ -30,7 +35,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { ellipse, square, triangle, diceOutline, list } from 'ionicons/icons';
+import { ellipse, square, triangle, diceOutline, list, home } from 'ionicons/icons';
 
 export default defineComponent({
   name: 'TabsPage',
@@ -41,7 +46,8 @@ export default defineComponent({
       square, 
       triangle,
       diceOutline, 
-      list
+      list,
+      home
     }
   }
 });

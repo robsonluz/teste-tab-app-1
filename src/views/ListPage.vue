@@ -36,7 +36,7 @@
     
       <ion-list>
               <ion-list-header> Recent Conversations </ion-list-header>
-              <ion-item>
+              <ion-item router-link="/settings">
                 <ion-label>
                   <h2>Finn</h2>
                   <h3>I'm a big deal</h3>
@@ -60,13 +60,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonItem } from '@ionic/vue';
 import { ellipsisVertical, ellipsisHorizontal } from 'ionicons/icons';
 
 
 export default  defineComponent({
   name: 'Tab1Page',
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonItem },
   setup() {
     return {
 ellipsisVertical, ellipsisHorizontal
