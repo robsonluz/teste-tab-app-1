@@ -47,11 +47,13 @@
     </ion-item>  
 -->    
 
-  <ion-item button lines="none" detail color="primary" href="/tabs/tab2">
+  <ion-item button lines="none" detail color="primary" routerLink="/settings" router-link="/settings" >
     <ion-label>
-      Button Item with Detail Arrow
+      Button Item with Detail Arrow y
     </ion-label>
-  </ion-item>     
+  </ion-item>  
+
+<ion-button router-link="/settings">Go to detail</ion-button>     
 
   <router-link to="/tabs/tab2">Tab1</router-link>     
         
@@ -61,13 +63,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { IonButton, IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
 
 import { star } from 'ionicons/icons';
 
 export default  defineComponent({
   name: 'Tab1Page',
-  components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+  components: { IonButton, IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
   setup() {
     return {
       star

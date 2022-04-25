@@ -56,3 +56,7 @@
 	--ion-color-light-tint: #f5f6f9;
 
 }
+
+ion-button {
+	text-transform: none;
+}
