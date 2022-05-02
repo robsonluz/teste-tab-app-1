@@ -54,6 +54,7 @@
   </ion-item>  
 
 <ion-button router-link="/settings">Go to detail</ion-button>     
+<ion-button @click="navegar()">Navegar</ion-button>
 
   <router-link to="/tabs/tab2">Tab1</router-link>     
         
@@ -63,16 +64,25 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonButton, IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
+import { IonButton, IonPage, IonHeader, IonToolbar, IonTitle, IonContent} from '@ionic/vue';
+import { useRouter } from 'vue-router';
 
 import { star } from 'ionicons/icons';
 
 export default  defineComponent({
   name: 'Tab1Page',
   components: { IonButton, IonHeader, IonToolbar, IonTitle, IonContent, IonPage },
+  methods: {
+    navegar:function() {
+      //const router = useRouter();
+      //console.log(this.router);
+      this.router.push('/settings');
+    }
+  },
   setup() {
+    const router = useRouter();
     return {
-      star
+      star, router
     }
   }   
 });
