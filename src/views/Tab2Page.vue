@@ -32,7 +32,24 @@
           <ion-datetime></ion-datetime>
           <ion-button @click="modalData.dismiss()">Avançar</ion-button>
         </ion-content>
-      </ion-modal>      
+      </ion-modal>   
+
+<ion-grid>
+  <ion-row>
+    <ion-col >
+      <div>
+        <img src="../assets/madison.jpg">
+        <h3 class="top-left white" style="color:white">Madison</h3>
+      </div>
+    </ion-col>
+    <ion-col >
+      <div>
+        <img src="../assets/madison.jpg">
+        <h3 class="top-left white" style="color:white">Madison</h3>
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>         
 
     </ion-content>
   </ion-page>
@@ -48,3 +65,12 @@ export default defineComponent({
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonModal }
 });
 </script>
+
+<style scoped>
+/* Top left text */
+.top-left {
+  position: absolute;
+  top: 0px;
+  left: 16px;
+}
+</style>
