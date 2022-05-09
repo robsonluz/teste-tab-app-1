@@ -30,27 +30,18 @@
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
-          <ion-title size="large">Listagem</ion-title>
+          <ion-title size="large">Filmes</ion-title>
         </ion-toolbar>
       </ion-header>
     
       <ion-list>
-              <ion-list-header> Recent Conversations </ion-list-header>
-              <ion-item router-link="/settings">
-                <ion-label>
-                  <h2>Finn</h2>
-                  <h3>I'm a big deal</h3>
-                  <p>Listen, I've had a pretty messed up day...</p>
-                </ion-label>
-              </ion-item>
-             
-              <ion-item>
-                <ion-label>
-                  <h2>Han</h2>
-                  <h3>Look, kid...</h3>
-                  <p>I've got enough on my plate as it is, and I...</p>
-                </ion-label>
-              </ion-item>  
+        <ion-list-header> Filmes </ion-list-header>
+        <ion-item v-for="(filme, index) in filmes" :key="index" router-link="/settings">
+          <ion-label>
+            <h2>{{filme.titulo}}</h2>
+            <h3>{{filme.sinopse}}</h3>
+          </ion-label>
+        </ion-item>
              
       </ion-list>      
       
@@ -67,9 +58,20 @@ import { ellipsisVertical, ellipsisHorizontal } from 'ionicons/icons';
 export default  defineComponent({
   name: 'Tab1Page',
   components: { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonItem },
+  data() {
+      return {
+          filmes: []
+      }
+  },  
+  created() {
+    var self = this;
+    self.axios.get('filmes/').then((response) => {
+      self.filmes = response.data;
+    })
+  },  
   setup() {
     return {
-ellipsisVertical, ellipsisHorizontal
+      ellipsisVertical, ellipsisHorizontal
     }
   }  
 });
