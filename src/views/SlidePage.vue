@@ -14,7 +14,18 @@
             <ion-slide>
                 <div class="slide">
                     <h1>Slide 1</h1>
-                    <br><br><br>
+                    <br><br>
+                    <ion-list>
+                        <ion-item>
+                            <ion-label position="floating">Floating Label</ion-label>
+                            <ion-input></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Floating Label</ion-label>
+                            <ion-input></ion-input>
+                        </ion-item>                        
+                    </ion-list>
+                    <br>
                     <ion-button color="primary" @click="proximoSlide()">Próximo</ion-button>
                 </div>
             </ion-slide>
