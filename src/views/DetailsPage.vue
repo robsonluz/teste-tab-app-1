@@ -49,18 +49,16 @@ export default defineComponent({
   },
   data() {
       return {
-          filme: []
+          filme: {}
       }
   },  
   created() {
     var self = this;
-    console.log('entrou aqui', this.$route.params.id);
     var id = this.$route.params.id;
     
     self.axios.get("filmes/" + id + "/").then((response) => {
       self.filme = response.data;
     })
-    
   }, 
 });
 </script>
