@@ -54,6 +54,7 @@
   </ion-item>  
 
 <ion-button router-link="/settings">Go to detail</ion-button>     
+<ion-button router-link="/slide">Slides</ion-button>  
 <ion-button @click="navegar()">Navegar</ion-button>
 
   <router-link to="/tabs/tab2">Tab1</router-link>     

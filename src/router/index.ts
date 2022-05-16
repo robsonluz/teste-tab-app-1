@@ -13,6 +13,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/SettingsPage.vue')
   },
   {
+    path: '/slide',
+    component: () => import('@/views/SlidePage.vue')
+  },  
+  {
     path: '/tabs/',
     component: TabsPage,
     children: [
