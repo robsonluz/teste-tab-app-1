@@ -36,7 +36,7 @@
     
       <ion-list>
         <ion-list-header> Filmes </ion-list-header>
-        <ion-item v-for="(filme, index) in filmes" :key="index" router-link="/settings">
+        <ion-item v-for="(filme, index) in filmes" :key="index" :router-link="'/details/' + filme.id">
           <ion-label>
             <h2>{{filme.titulo}}</h2>
             <h3>{{filme.sinopse}}</h3>
