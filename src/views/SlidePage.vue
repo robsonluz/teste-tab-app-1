@@ -10,7 +10,7 @@
         </ion-toolbar>
     </ion-header>    
     <ion-content :fullscreen="true">
-        <ion-slides id="slideShow" pager="false" :options="slideOpts">
+        <ion-slides id="slideShow" pager="false" :options="{ allowTouchMove: false, noSwiping:true, loop: false }">
             <ion-slide>
                 <div class="slide">
                     <h1>Slide 1</h1>
