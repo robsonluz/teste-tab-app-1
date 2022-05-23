@@ -30,6 +30,8 @@ import { defineComponent } from 'vue';
 
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useIonRouter } from '@ionic/vue';
+import { useStore } from 'vuex'
+import { key } from '../store'
 
 
 export default defineComponent({
@@ -41,7 +43,8 @@ export default defineComponent({
   },
   setup() {
     const ionRouter = useIonRouter();
-    return { ionRouter };
+    const store = useStore(key);
+    return { ionRouter, store };
   },
   methods: {
       google() {
@@ -64,7 +67,9 @@ export default defineComponent({
                 self.axios.post('login/', formData).then((response) => {
                   console.log('resposta do login');
                   console.log('logado', response);
+                  self.store.state.currentUser = response.data;
                   self.ionRouter.push('/');
+                  
                   //self.duvidas = response.data;
                 }).catch(function (error) {
                   console.log('error', error);
@@ -77,6 +82,7 @@ export default defineComponent({
                       console.log(responseUr);
                       self.axios.post('login/', formData).then((responseLogin) => {
                         console.log('logado', responseLogin);
+                        self.store.state.currentUser = responseLogin.data;
                         self.ionRouter.push('/');
                       });
                     });

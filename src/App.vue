@@ -1,12 +1,12 @@
 <template>
   <ion-app>
-    <div v-if="(currentUser && currentUser.id) || login">
+    <div v-if="(store.state.currentUser && store.state.currentUser.id) || login">
       <ion-split-pane content-id="main-content">
-        <ion-menu content-id="main-content" type="overlay">
+        <ion-menu v-if="store.state.currentUser" content-id="main-content" type="overlay">
           <ion-content>
             <ion-list id="inbox-list">
               <ion-list-header>Inbox</ion-list-header>
-              <ion-note>hi@ionicframework.com</ion-note>
+              <ion-note>{{store.state.currentUser.username}}</ion-note>
     
               <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
                 <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
@@ -41,6 +41,10 @@ import { defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
 import { useIonRouter } from '@ionic/vue';
+// in a vue component
+import { useStore } from 'vuex'
+import { key } from './store'
+
 export default defineComponent({
   name: 'App',
   components: {
@@ -59,18 +63,20 @@ export default defineComponent({
   },
   data() {
       return {
-          currentUser: {},
+          //currentUser: {},
           login: false
       }
   },  
   created() {
     var self = this;
     console.log(this.ionRouter);
+    console.log(this.store);
 
     self.axios.get('currentuser/').then((response) => {
       console.log('usuário logado', response.data);
       if (response.data) {
-        self.currentUser = response.data;
+        //self.currentUser = response.data;
+        self.store.state.currentUser = response.data;
       } else {
         //redireciona para a página de login
         self.login = true;
@@ -85,6 +91,7 @@ export default defineComponent({
   setup() {
     const selectedIndex = ref(0);
     const ionRouter = useIonRouter();
+    const store = useStore(key);
     const appPages = [
       {
         title: 'Home',
@@ -157,6 +164,7 @@ export default defineComponent({
       warningOutline, 
       warningSharp,
       ionRouter,
+      store,
       isSelected: (url: string) => url === route.path ? 'selected' : ''
     }
   }
