@@ -1,6 +1,6 @@
 <template>
  
-  <ion-page>  
+  <ion-page  class="bg">  
     <ion-header>
         <ion-toolbar color="primary">
             <ion-buttons slot="start">
@@ -9,7 +9,7 @@
             <ion-title>Detalhe</ion-title>
         </ion-toolbar>
     </ion-header>    
-    <ion-content :fullscreen="true">
+    <ion-content style="--background: #f1453d;" :fullscreen="true">
         <h1>{{filme.titulo}}</h1>
         <h3>{{filme.sinopse}}</h3>
         <img :src="filme.fotoCapa">
@@ -62,3 +62,9 @@ export default defineComponent({
   }, 
 });
 </script>
+
+<style scoped>
+.bg {
+    background-color: aqua!important;
+}
+</style>
