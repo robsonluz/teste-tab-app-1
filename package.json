@@ -22,7 +22,8 @@
     "firebase": "^9.8.0",
     "vue": "^3.2.21",
     "vue-axios": "^3.4.1",
-    "vue-router": "^4.0.12"
+    "vue-router": "^4.0.12",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@capacitor/cli": "3.4.3",

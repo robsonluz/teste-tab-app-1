@@ -1,10 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router';
+import { store, key } from './store'
 
 import { IonicVue } from '@ionic/vue';
 
+
 import axios from 'axios'
+
 import VueAxios from 'vue-axios'
 
 /* Core CSS required for Ionic components to work properly */
@@ -44,7 +47,10 @@ initializeApp(firebaseConfig);
 
 const app = createApp(App)
   .use(IonicVue)
-  .use(router);
+  .use(router)
+  .use(store, key);
+
+app.provide('$store', store);
 
   
 app.use(VueAxios, axios);
