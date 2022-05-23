@@ -1,5 +1,11 @@
 <template>
   <ion-app>
+    <ion-loading
+      :is-open="isLoading"
+      message=""
+      duration="10000"
+    ></ion-loading> 
+
     <div v-if="(store.state.currentUser && store.state.currentUser.id) || login">
       <ion-split-pane content-id="main-content">
         <ion-menu v-if="store.state.currentUser" content-id="main-content" type="overlay">
@@ -38,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonRouterOutlet, IonSplitPane } from '@ionic/vue';
+import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonRouterOutlet, IonSplitPane, IonLoading } from '@ionic/vue';
 import { defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
@@ -62,12 +68,18 @@ export default defineComponent({
     IonNote, 
     IonRouterOutlet, 
     IonSplitPane,
+    IonLoading
   },
   data() {
       return {
           //currentUser: {},
-          login: false
+          login: false,
+          isLoading: false,
+          axiosInterceptor: {},          
       }
+  },  
+  mounted() {
+      this.enableInterceptor()
   },  
   created() {
     var self = this;
@@ -168,7 +180,27 @@ export default defineComponent({
       store,
       isSelected: (url: string) => url === route.path ? 'selected' : ''
     }
-  }
+  },
+  methods: {
+    enableInterceptor() {
+      var self = this;
+        this.axiosInterceptor = this.axios.interceptors.request.use((config) => {
+            this.isLoading = true
+            return config
+        }, (error) => {
+            this.isLoading = false  
+            return Promise.reject(error)
+        })
+        
+        this.axios.interceptors.response.use((response) => {
+            this.isLoading = false    
+            return response
+        }, function(error) {
+            self.isLoading = false
+            return Promise.reject(error)
+        })
+    },
+  }  
 });
 </script>
 
