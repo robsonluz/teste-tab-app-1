@@ -7,7 +7,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     redirect: '/tabs/tab1'
   },
-
+  {
+    path: '/login',
+    component: () => import('@/views/LoginPage.vue')
+  },
   {
     path: '/settings',
     component: () => import('@/views/SettingsPage.vue')
