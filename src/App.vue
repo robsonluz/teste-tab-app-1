@@ -29,8 +29,10 @@
         <ion-router-outlet id="main-content"></ion-router-outlet>
       </ion-split-pane>
     </div>
-    <div v-else>
-        Splash Screen
+    <div v-else class="container-full">
+        <div class="vertical-center ion-text-center">
+            Splash Screen
+        </div>  
     </div>
   </ion-app>
 </template>
@@ -75,7 +77,6 @@ export default defineComponent({
     self.axios.get('currentuser/').then((response) => {
       console.log('usuário logado', response.data);
       if (response.data) {
-        //self.currentUser = response.data;
         self.store.state.currentUser = response.data;
       } else {
         //redireciona para a página de login
@@ -263,4 +264,21 @@ ion-note {
 ion-item.selected {
   --color: var(--ion-color-primary);
 }
+
+.container-full {
+  height: 100%;
+  position: relative;
+  background-color: var(--ion-color-primary);
+  color: white;
+}
+
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+}
+
 </style>
