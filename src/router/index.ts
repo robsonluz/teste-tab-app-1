@@ -12,6 +12,10 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/LoginPage.vue')
   },
   {
+    path: '/cadastro',
+    component: () => import('@/views/CadastroPage.vue')
+  },  
+  {
     path: '/settings',
     component: () => import('@/views/SettingsPage.vue')
   },
