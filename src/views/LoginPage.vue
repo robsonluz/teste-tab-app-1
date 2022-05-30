@@ -47,6 +47,26 @@ export default defineComponent({
     return { ionRouter, store };
   },
   methods: {
+      posLogin(response) {
+        var self = this;
+        console.log('resposta do login');
+        console.log('logado', response);
+        var data = response.data;
+        if(data && data.id) {
+          self.store.state.currentUser = data;
+
+          self.axios.get('currentusuario/').then((responseUsuario) => {
+            console.log('usuario logado');
+            console.log(responseUsuario.data);
+            //Coloque aqui a rota para quem já está cadastrado
+            self.ionRouter.push('/');
+          }).catch(function (error) {
+            console.log('nao existe usuario cadastrado', error)
+            //Coloque aqui a sua rota de cadastro
+            self.ionRouter.push('/cadastro');
+          })
+        }
+      },    
       google() {
         var provider = new GoogleAuthProvider();
 
@@ -67,8 +87,9 @@ export default defineComponent({
                 self.axios.post('login/', formData).then((response) => {
                   console.log('resposta do login');
                   console.log('logado', response);
-                  self.store.state.currentUser = response.data;
-                  self.ionRouter.push('/');
+                  self.posLogin(response);
+                  //self.store.state.currentUser = response.data;
+                  //self.ionRouter.push('/');
                   
                   //self.duvidas = response.data;
                 }).catch(function (error) {
@@ -81,9 +102,10 @@ export default defineComponent({
                     self.axios.post('user-registration/', user).then((responseUr) => {
                       console.log(responseUr);
                       self.axios.post('login/', formData).then((responseLogin) => {
-                        console.log('logado', responseLogin);
-                        self.store.state.currentUser = responseLogin.data;
-                        self.ionRouter.push('/');
+                        //console.log('logado', responseLogin);
+                        //self.store.state.currentUser = responseLogin.data;
+                        //self.ionRouter.push('/');
+                        self.posLogin(responseLogin);
                       });
                     });
                   }
