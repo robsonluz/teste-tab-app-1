@@ -22,6 +22,16 @@
       </ion-item>
 
       <ion-item>
+        <ion-label position="floating">CEP</ion-label>
+        <ion-input @ionBlur="buscaCep()" v-model="usuario.cep"></ion-input>
+      </ion-item>      
+
+      <ion-item>
+        <ion-label position="floating">Endereço</ion-label>
+        <ion-input v-model="usuario.endereco"></ion-input>
+      </ion-item>      
+
+      <ion-item>
         <ion-label position="floating">Cidade</ion-label>
         <ion-select v-model="usuario.cidade">
           <ion-select-option
@@ -78,6 +88,8 @@ export default defineComponent({
         nome: "",
         email: "",
         telefone: "",
+        cep: "",
+        endereco: "",
         cidade: null,
       },
       currentUser: null,
@@ -101,6 +113,17 @@ export default defineComponent({
     });
   },
   methods: {
+    buscaCep() {
+      var self = this;
+      this.axios.get("https://viacep.com.br/ws/" + this.usuario.cep + '/json', {
+         withCredentials: false
+      }).then((response) => {
+        console.log(response.data);
+        if ( response.data && response.data.logradouro ) {
+            self.usuario.endereco = response.data.logradouro;
+        }
+      });
+    },
     cadastrar() {
       var self = this;
       if (this.currentUser == null) {
